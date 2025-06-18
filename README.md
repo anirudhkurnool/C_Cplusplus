@@ -1,2 +1,2 @@
-# C_Cplusplus
-the code i wrote while learning and practicing C and C++
+# Cplusplus
+The code I wrote while learning and practicing C / C++

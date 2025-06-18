@@ -7,6 +7,13 @@ void greet(std::string name) {
     std::cout << "Hello, " << name << "\n";
 }
 
+void greet_with_input(){
+    std::string name;
+    std::cout << "enter you name : ";
+    std::cin >> name;
+    std::cout << "Welcome, " << name << "\n";
+}
+
 int add(int a, int b) {
     return a + b;
 }
@@ -108,7 +115,14 @@ class Rectangle {
             std::cout << "area      : " << this->area() << "\n";
             std::cout << "perimeter : " << this->perimeter() << "\n";
         }
+
+        friend std::ostream& operator<<(std::ostream &os, Rectangle& r);
 };
+
+std::ostream& operator<<(std::ostream &os, Rectangle& r) {
+    os << "===== Rectangle =====\n" << "length    : " << r.length << "\n"  << "breadth   : " << r.breadth << "\n" << "area      : " << r.area() << "\n" << "perimeter : " << r.perimeter() << "\n";
+    return os;
+}
 
 class Square : Rectangle {
     public:
@@ -118,6 +132,11 @@ class Square : Rectangle {
             std::cout << "side-length    : " << this->length << "\n";
             std::cout << "area           : " << this->area() << "\n";
             std::cout << "perimeter      : " << this->perimeter() << "\n";
+        }
+
+        friend std::ostream& operator<<(std::ostream& os, Square& s) {
+            os << "===== Square =====\n" << "side-length    : " << s.length << "\n" << "area           : " << s.area() << "\n" << "perimeter      : " << s.perimeter() << "\n";
+            return os;
         }
 };
 
@@ -139,6 +158,8 @@ int main() {
     std::cout << " ] \n";
 
     greet("Anirudh");
+
+    greet_with_input();
 
     std::cout << "Sum of " << 1 << " and "  << 2 << " is " << add(1, 2) << "\n";
     std::cout << "Product of "<< 3 << " and " << 4 << " is " << mul(3, 4) << "\n";
@@ -166,13 +187,18 @@ int main() {
 
     Rectangle r1 = Rectangle(3.0, 4.0);
     Square s1 = Square(5.0);
-    r1.display();
-    s1.display();
 
+    std::cout << r1;
+
+    std::cout << s1;
+
+    // r1.display();
+    // s1.display();
 
     Rectangle r2 = r1;
-    r2.display();
+    //r2.display();
     r2.set_length(5.0);
-    r2.display();
-    r1.display();
+    //r2.display();
+    //r1.display();
+    std::cout << r2;
 }
